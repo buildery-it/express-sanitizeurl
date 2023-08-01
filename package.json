@@ -1,0 +1,35 @@
+{
+  "name": "@entva/express-sanitizeurl",
+  "description": "ExpressJS middleware that checks request URL for potentially breaking things",
+  "author": "Max Degterev <max@degterev.me>",
+  "license": "MIT",
+  "readmeFilename": "README.md",
+  "repository": "entva/express-sanitizeurl",
+  "bugs": "https://github.com/entva/express-sanitizeurl/issues",
+  "version": "1.0.0",
+  "keywords": [
+    "express",
+    "expressjs",
+    "middleware",
+    "query",
+    "querysting",
+    "sanitize"
+  ],
+  "main": "index.js",
+  "scripts": {
+    "reinstall": "rm -rf node_modules package-lock.json && npm install",
+    "lint": "eslint ./",
+    "prepublishOnly": "npm test && npm run lint && echo \"\\033[0;32mReady to publish\\033[0m\"",
+    "test": "TZ='GMT' mocha"
+  },
+  "devDependencies": {
+    "chai": "^4.3.7",
+    "eslint": "^8.46.0",
+    "eslint-config-entva-base": "^1.0.0",
+    "mocha": "^10.2.0",
+    "sinon": "^15.2.0"
+  },
+  "dependencies": {
+    "debug": "^4.1.1"
+  }
+}
