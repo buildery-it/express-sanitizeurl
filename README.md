@@ -1,5 +1,5 @@
 @entva/express-sanitizeurl
-======================
+==========================
 
 ExpressJS middleware that checks request URL for potentially breaking things, such as:
  - Unparsable query string sequences that would crash on attempt to parse on the client side

@@ -1,10 +1,9 @@
-const debug = require('debug')('@entva/express-sanitizeurl');
+import type { Request, Response, NextFunction } from 'express';
+import logger from 'debug';
 
-const defaults = {
-  redirectTo: '/',
-};
+const debug = logger('@entva/express-sanitizeurl');
 
-const getSafeUrl = (originalUrl) => {
+const getSafeUrl = (originalUrl: string) => {
   const [href, ...qs] = originalUrl.split('?');
 
   const safeHref = href.replace(/\/+/g, '/');
@@ -16,10 +15,18 @@ const getSafeUrl = (originalUrl) => {
   return url;
 };
 
-module.exports = (opts) => {
-  const options = { ...defaults, ...opts };
+export type Options = {
+  redirectTo: string,
+};
 
-  return (req, res, next) => {
+const defaults = {
+  redirectTo: '/',
+};
+
+const getMiddleware = (params?: Options) => {
+  const options = { ...defaults, ...params };
+
+  const middleware = (req: Request, res: Response, next: NextFunction) => {
     const { originalUrl } = req;
 
     try {
@@ -39,4 +46,8 @@ module.exports = (opts) => {
 
     next();
   };
+
+  return middleware;
 };
+
+export default getMiddleware;
